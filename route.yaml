@@ -2,16 +2,17 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app.kubernetes.io/component: server
-  name: nginx-route-edu18
+    app : argocd
+  name: argocd
 spec:
-  host: nginx
+  host: edu-domain.duckdns.org
   port:
     targetPort: http
   tls:
+    insecureEdgeTerminationPolicy: Allow
     termination: edge
   to:
     kind: Service
-    name: mynginx
+    name: argocd-server
     weight: 100
   wildcardPolicy: None
